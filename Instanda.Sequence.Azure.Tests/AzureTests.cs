@@ -1,18 +1,16 @@
-﻿using System;
-using System.Threading.Tasks;
-
+﻿using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Instanda.Sequence.Tests
+namespace Instanda.Sequence.Azure.Tests
 {
     [TestClass]
-    public class Tests
+    public class AzureTests
     {
 
         private IStateProvider GetStateProvider()
         {
-           
-            return new InMemoryStateProvider();
+
+            return new AzureTableStateProvider("DefaultEndpointsProtocol=https;AccountName=developersrv;AccountKey=vpiHFEkTPgWFjsVF9ugc92nw2BJYrPyeiyu3Z5ttO1c0iWY9czWs5mFWcfBs4lk+zBTBkcwIpG9sVWTgbg3mJw==", "SequenceTest");
         }
 
         private static Sequence CreateSequence(int increment = 1, int startAt = 0, long maxValue = long.MaxValue,
@@ -133,28 +131,7 @@ namespace Instanda.Sequence.Tests
         }
 
 
-        [TestMethod]
-        public async Task SequenceSetsDefaultValues()
-        {
-
-            var sequence = new Sequence();
-
-
-            Assert.IsTrue(sequence.CurrentValue == 0);
-
-            Assert.IsFalse(sequence.Cycle);
-
-            Assert.IsTrue(sequence.Increment  == 1);
-
-            Assert.IsTrue(sequence.MaxValue == long.MaxValue);
-
-            Assert.IsTrue(sequence.MinValue == 0);
-
-            Assert.IsTrue(sequence.StartAt == 0);
-
-           
-        }
-
+        
         [ExpectedException(typeof(SequenceCouldNotBeFoundException))]
         [TestMethod]
         public async Task NextMethodThrowsExceptionIfSequencyCanNotBeFound()
@@ -268,21 +245,6 @@ namespace Instanda.Sequence.Tests
 
 
        
-        [ExpectedException(typeof(MaxRetryAttemptReachedException))]
-        [TestMethod]
-        public async Task NextMethodThrowsExceptionWhenIfMaxRetryAttemptIsReach()
-        {
-            var stateProvider = GetStateProvider();
-
-            ((InMemoryStateProvider)stateProvider).UpdateValue = false;
-
-            var sequenceGenerator = new SequenceGenerator(stateProvider);
-
-            var sequence = CreateSequence();
-
-            var sequenceKey = await stateProvider.AddAsync(sequence);
-
-             await sequenceGenerator.NextAsync(sequenceKey);
-        }
+       
     }
 }

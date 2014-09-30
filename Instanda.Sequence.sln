@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Instanda.Sequence.Tests", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Instanda.Sequence.Azure", "Instanda.Sequence.Azure\Instanda.Sequence.Azure.csproj", "{4C97E1EA-0ABD-45EE-A5D7-3BB76D51DFD5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Instanda.Sequence.Azure.Tests", "Instanda.Sequence.Azure.Tests\Instanda.Sequence.Azure.Tests.csproj", "{2B928DF0-8C12-4B77-A2BD-25FB70D4F02A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{4C97E1EA-0ABD-45EE-A5D7-3BB76D51DFD5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4C97E1EA-0ABD-45EE-A5D7-3BB76D51DFD5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4C97E1EA-0ABD-45EE-A5D7-3BB76D51DFD5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2B928DF0-8C12-4B77-A2BD-25FB70D4F02A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B928DF0-8C12-4B77-A2BD-25FB70D4F02A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B928DF0-8C12-4B77-A2BD-25FB70D4F02A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2B928DF0-8C12-4B77-A2BD-25FB70D4F02A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

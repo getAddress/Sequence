@@ -67,7 +67,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AzureTableStorageProvider.cs" />
+    <Compile Include="AzureTableStateProvider.cs" />
     <Compile Include="Exceptions.cs" />
     <Compile Include="SequenceTableEntity.cs" />
     <Compile Include="TableEntityRepository.cs" />

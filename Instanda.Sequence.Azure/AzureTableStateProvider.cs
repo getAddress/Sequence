@@ -4,11 +4,12 @@ using System.Threading.Tasks;
 
 namespace Instanda.Sequence.Azure
 {
-    public class AzureTableStorageProvider : TableEntityRepository<SequenceTableEntity>, IStateProvider
+    public class AzureTableStateProvider : TableEntityRepository<SequenceTableEntity>, IStateProvider
     {
         private const string PartitionKey = "Sequences";
 
-        public AzureTableStorageProvider(string connectionStr,string tableName):base(connectionStr,tableName,false)
+        public AzureTableStateProvider(string connectionStr, string tableName)
+            : base(connectionStr, tableName, false)
         {
             
         }
