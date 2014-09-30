@@ -36,6 +36,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Data">
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5.1\System.Data.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <Choose>
     <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
@@ -51,13 +54,18 @@
   </Choose>
   <ItemGroup>
     <Compile Include="InMemoryStateProvider.cs" />
+    <Compile Include="Sequence.cs" />
     <Compile Include="Tests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Instanda.Sequence\Instanda.Sequence.csproj">
-      <Project>{0d8aa225-8124-4b31-9a37-c5295f68a314}</Project>
-      <Name>Instanda.Sequence</Name>
+    <ProjectReference Include="..\Instand.Sequence\Instand.Sequence.csproj">
+      <Project>{794cdafc-f291-4105-a3da-80a66ab44ec0}</Project>
+      <Name>Instand.Sequence</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Instanda.Sequence.Azure\Instanda.Sequence.Azure.csproj">
+      <Project>{4C97E1EA-0ABD-45EE-A5D7-3BB76D51DFD5}</Project>
+      <Name>Instanda.Sequence.Azure</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>

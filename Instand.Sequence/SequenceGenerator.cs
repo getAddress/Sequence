@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Instanda.Sequence
@@ -108,7 +105,7 @@ namespace Instanda.Sequence
             public long Value { get; set; }
         }
 
-        private static long CycleOrFailIfGreaterThanMaximum(Sequence sequence, long newValue)
+        private static long CycleOrFailIfGreaterThanMaximum(ISequence sequence, long newValue)
         {
             if (newValue <= sequence.MaxValue) return newValue;
             
@@ -120,7 +117,7 @@ namespace Instanda.Sequence
             throw new MaximumValueReachedException(sequence.MaxValue);
         }
 
-        private static long CycleOrFailIfLessThanMinimum(Sequence sequence, long newValue)
+        private static long CycleOrFailIfLessThanMinimum(ISequence sequence, long newValue)
         {
             if (newValue >= sequence.MinValue) return newValue;
 

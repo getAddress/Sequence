@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Instanda.Sequence
+﻿namespace Instanda.Sequence.Tests
 {
-    public class Sequence
+    public class Sequence : ISequence
     {
         public Sequence()
         {
@@ -41,13 +35,6 @@ namespace Instanda.Sequence
         public long CurrentValue { get; set; }   
     }
 
-    public class SequenceKey
-    {
-        public SequenceKey()
-        {
-            
-        }
-        public string Value { get; set; }
-    }
+    
 
 }

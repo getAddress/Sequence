@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Instanda.Sequence.Tests
 {
-    class InMemoryStateProvider : IStateProvider
+    internal class InMemoryStateProvider : IStateProvider
     {
-        private readonly Dictionary<string, Sequence> dictionary;
+        private readonly Dictionary<string, ISequence> dictionary;
 
         public bool UpdateValue
         {
@@ -18,11 +18,11 @@ namespace Instanda.Sequence.Tests
 
         public InMemoryStateProvider()
         {
-            dictionary = new Dictionary<string, Sequence>();
+            dictionary = new Dictionary<string, ISequence>();
             UpdateValue = true;
         }
 
-        public Task<SequenceKey> AddAsync(Sequence sequence)
+        public Task<SequenceKey> AddAsync(ISequence sequence)
         {
             try
             {
@@ -38,7 +38,7 @@ namespace Instanda.Sequence.Tests
             }
         }
 
-        public Task<Sequence> GetAsync(SequenceKey sequenceKey)
+        public Task<ISequence> GetAsync(SequenceKey sequenceKey)
         {
             try
             {
@@ -46,11 +46,16 @@ namespace Instanda.Sequence.Tests
             }
             catch (Exception)
             {
-                return Task.FromResult(default(Sequence));
+                return Task.FromResult(default(ISequence));
             }
         }
 
-        public Task<bool> UpdateAsync(SequenceKey sequenceKey, Sequence sequence)
+        public async Task<ISequence> NewAsync()
+        {
+            return await  Task.FromResult(new Sequence());
+        }
+
+        public Task<bool> UpdateAsync(SequenceKey sequenceKey, ISequence sequence)
         {
             try
             {

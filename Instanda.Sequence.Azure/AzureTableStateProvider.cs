@@ -14,11 +14,11 @@ namespace Instanda.Sequence.Azure
             
         }
 
-        public async Task<SequenceKey> AddAsync(Sequence sequence)
+        public async Task<SequenceKey> AddAsync(ISequence sequence)
         {
             var rowKey = Guid.NewGuid().ToString();
 
-            var sequenceEntity = SequenceTableEntity.FromSequence(sequence);
+            var sequenceEntity = (SequenceTableEntity)sequence;
 
             sequenceEntity.RowKey = rowKey;
             sequenceEntity.PartitionKey = PartitionKey;
@@ -28,16 +28,16 @@ namespace Instanda.Sequence.Azure
             return new SequenceKey { Value = rowKey };
         }
 
-        public async Task<Sequence> GetAsync(SequenceKey sequenceKey)
+        public async Task<ISequence> GetAsync(SequenceKey sequenceKey)
         {
             var sequenceEntity = await base.Get(PartitionKey, sequenceKey.Value);
 
-            return sequenceEntity.ToSequence();
+            return sequenceEntity;
         }
 
-        public async  Task<bool> UpdateAsync(SequenceKey sequenceKey, Sequence sequence)
+        public async  Task<bool> UpdateAsync(SequenceKey sequenceKey, ISequence sequence)
         {
-            var sequenceEntity = SequenceTableEntity.FromSequence(sequence);
+            var sequenceEntity = (SequenceTableEntity)sequence;
 
             sequenceEntity.RowKey = sequenceKey.Value;
             sequenceEntity.PartitionKey = PartitionKey;
@@ -46,5 +46,24 @@ namespace Instanda.Sequence.Azure
 
            return updatedSequenceEntity != null;
         }
+
+        public async Task<ISequence> NewAsync()
+        {
+            var sequence =  new SequenceTableEntity();
+            SetDefaultValues(sequence);
+            return await Task.FromResult(sequence);
+        }
+
+        private void SetDefaultValues(ISequence sequence)
+        {
+            sequence.StartAt = 0;
+            sequence.Increment = 1;
+            sequence.MaxValue = long.MaxValue;
+            sequence.MinValue = 0;
+            sequence.Cycle = false;
+            sequence.CurrentValue = 0;
+
+        }
+
     }
 }
