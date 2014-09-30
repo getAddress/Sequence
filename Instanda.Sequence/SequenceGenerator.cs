@@ -63,13 +63,21 @@ namespace Instanda.Sequence
                 throw new SequenceCouldNotBeFoundException();
             }
 
+
             var result = new TryGetSequenceValueResult
             {
                 Value = sequence.StartAt
             };
 
+            if (sequence.Increment == 0)
+            {
+                result.Result = true;
+                return result;
+            }
 
-            var sequenceValue = sequence.CurrentValue  + sequence.Increment;
+
+
+            var sequenceValue =  sequence.CurrentValue + sequence.Increment;
 
             sequenceValue = CycleOrFailIfGreaterThanMaximum(sequence, sequenceValue);
 
@@ -84,7 +92,7 @@ namespace Instanda.Sequence
                 return result;
             }
 
-            result.Value += sequence.CurrentValue;
+            result.Value = sequence.CurrentValue;
 
             result.Result = true;
 
@@ -102,34 +110,26 @@ namespace Instanda.Sequence
 
         private static long CycleOrFailIfGreaterThanMaximum(Sequence sequence, long newValue)
         {
-            if ((newValue + sequence.Increment) > sequence.MaxValue)
+            if (newValue <= sequence.MaxValue) return newValue;
+            
+            if (sequence.Cycle)
             {
-                if (sequence.Cycle)
-                {
-                    return sequence.StartAt;
-                }
-
-                throw new MaximumValueReachedException(sequence.MaxValue);
-
+                return sequence.StartAt + sequence.Increment;
             }
-            return newValue;
+
+            throw new MaximumValueReachedException(sequence.MaxValue);
         }
 
         private static long CycleOrFailIfLessThanMinimum(Sequence sequence, long newValue)
         {
-            if ((newValue + sequence.Increment) < sequence.MinValue)
+            if (newValue >= sequence.MinValue) return newValue;
+
+            if (sequence.Cycle)
             {
-                if (sequence.Cycle)
-                {
-                    return sequence.StartAt;
-
-                }
-
-                throw new MinimumValueReachedException(sequence.MinValue);
-
+                return sequence.StartAt + sequence.Increment;
             }
 
-            return newValue;
+            throw new MinimumValueReachedException(sequence.MinValue);
         }
 
 

@@ -24,9 +24,16 @@ namespace Instanda.Sequence
            
         }
 
-      
 
-        public long StartAt { get; set; }
+        private long startAt;
+        public long StartAt {
+            get { return startAt; }
+            set 
+            { 
+            startAt = value;
+            CurrentValue = value;
+            }
+        }
         public int Increment { get; set; }
         public long MaxValue { get; set; }
         public long MinValue { get; set; }

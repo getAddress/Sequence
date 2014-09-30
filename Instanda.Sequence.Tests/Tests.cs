@@ -13,11 +13,15 @@ namespace Instanda.Sequence.Tests
             return new InMemoryStateProvider();
         }
 
-        private Sequence CreateSequence(int increment = 1, int startAt = 0)
+        private static Sequence CreateSequence(int increment = 1, int startAt = 0, long maxValue = long.MaxValue,
+            long minValue = long.MinValue,bool cycle = false )
         {
             return new Sequence {
              Increment=increment,
-             StartAt = startAt
+             StartAt = startAt,
+             MaxValue = maxValue,
+             Cycle = cycle,
+             MinValue = minValue
             };
         }
 
@@ -40,6 +44,48 @@ namespace Instanda.Sequence.Tests
             Assert.IsTrue(nextValue1 == 1);
 
             Assert.IsTrue(nextValue2 == 2);
+        }
+
+        [TestMethod]
+        public async Task NextAsyncReturnsExpectedValueForNegativeIncrement()
+        {
+
+            var stateProvider = GetStateProvider();
+
+            var sequenceGenerator = new SequenceGenerator(stateProvider);
+
+            var sequence = CreateSequence(increment:-1, startAt:5, minValue:-100);
+
+            var sequenceKey = await stateProvider.AddAsync(sequence);
+
+            var nextValue1 = await sequenceGenerator.NextAsync(sequenceKey);
+
+            var nextValue2 = await sequenceGenerator.NextAsync(sequenceKey);
+
+            Assert.IsTrue(nextValue1 == 4);
+
+            Assert.IsTrue(nextValue2 == 3);
+        }
+
+        [TestMethod]
+        public async Task NextAsyncReturnsExpectedValueForZeroIncrement()
+        {
+
+            var stateProvider = GetStateProvider();
+
+            var sequenceGenerator = new SequenceGenerator(stateProvider);
+
+            var sequence = CreateSequence(increment: 0, startAt: 5);
+
+            var sequenceKey = await stateProvider.AddAsync(sequence);
+
+            var nextValue1 = await sequenceGenerator.NextAsync(sequenceKey);
+
+            var nextValue2 = await sequenceGenerator.NextAsync(sequenceKey);
+
+            Assert.IsTrue(nextValue1 == 5);
+
+            Assert.IsTrue(nextValue2 == 5);
         }
 
         [TestMethod]
@@ -111,34 +157,111 @@ namespace Instanda.Sequence.Tests
         [TestMethod]
         public async Task NextMethodThrowsExceptionIfSequencyCanNotBeFound()
         {
-            throw new NotImplementedException();
+            var stateProvider = GetStateProvider();
+
+            var sequenceGenerator = new SequenceGenerator(stateProvider);
+
+
+            var nextValue1 = await sequenceGenerator.NextAsync(new SequenceKey { Value = "1234"});
         }
 
         [ExpectedException(typeof(MaximumValueReachedException))]
         [TestMethod]
         public async Task NextMethodThrowsExceptionWhenMaximumValueIsReached()
         {
-            throw new NotImplementedException();
+            var stateProvider = GetStateProvider();
+
+            var sequenceGenerator = new SequenceGenerator(stateProvider);
+
+            var sequence = CreateSequence(maxValue:2);
+
+            var sequenceKey = await stateProvider.AddAsync(sequence);
+
+            var nextValue1 = await sequenceGenerator.NextAsync(sequenceKey);
+            
+            var nextValue2 = await sequenceGenerator.NextAsync(sequenceKey);
+
+            Assert.IsTrue(nextValue1 == 1);
+
+            Assert.IsTrue(nextValue2 == 2);
+
+            var nextValue3 = await sequenceGenerator.NextAsync(sequenceKey);
+
+           
         }
 
         [TestMethod]
         public async Task NextMethodCyclesWhenMaximumValueIsReached()
         {
-            throw new NotImplementedException();
+            var stateProvider = GetStateProvider();
+
+            var sequenceGenerator = new SequenceGenerator(stateProvider);
+
+            var sequence = CreateSequence(maxValue: 2, cycle:true);
+
+            var sequenceKey = await stateProvider.AddAsync(sequence);
+
+            var nextValue1 = await sequenceGenerator.NextAsync(sequenceKey);
+
+            var nextValue2 = await sequenceGenerator.NextAsync(sequenceKey);
+
+            var nextValue3 = await sequenceGenerator.NextAsync(sequenceKey);
+
+            Assert.IsTrue(nextValue1 == 1);
+
+            Assert.IsTrue(nextValue2 == 2);
+
+            Assert.IsTrue(nextValue3 == 1);
         }
 
 
         [TestMethod]
         public async Task NextMethodCyclesWhenMinimumValueIsReached()
         {
-            throw new NotImplementedException();
+            var stateProvider = GetStateProvider();
+
+            var sequenceGenerator = new SequenceGenerator(stateProvider);
+
+            var sequence = CreateSequence(minValue: 2, startAt:4,increment:-1, cycle: true);
+
+            var sequenceKey = await stateProvider.AddAsync(sequence);
+
+            var nextValue1 = await sequenceGenerator.NextAsync(sequenceKey);
+
+            var nextValue2 = await sequenceGenerator.NextAsync(sequenceKey);
+
+            var nextValue3 = await sequenceGenerator.NextAsync(sequenceKey);
+
+            Assert.IsTrue(nextValue1 == 3);
+
+            Assert.IsTrue(nextValue2 == 2);
+
+            Assert.IsTrue(nextValue3 == 3);
         }
 
         [ExpectedException(typeof(MinimumValueReachedException))]
         [TestMethod]
         public async Task NextMethodThrowsExceptionWhenMinimumValueIsReached()
         {
-            throw new NotImplementedException();
+            var stateProvider = GetStateProvider();
+
+            var sequenceGenerator = new SequenceGenerator(stateProvider);
+
+            var sequence = CreateSequence(minValue: 2, startAt: 4, increment: -1, cycle: false);
+
+            var sequenceKey = await stateProvider.AddAsync(sequence);
+
+            var nextValue1 = await sequenceGenerator.NextAsync(sequenceKey);
+
+            var nextValue2 = await sequenceGenerator.NextAsync(sequenceKey);
+
+            var nextValue3 = await sequenceGenerator.NextAsync(sequenceKey);
+
+            Assert.IsTrue(nextValue1 == 3);
+
+            Assert.IsTrue(nextValue2 == 2);
+
+           
         }
 
 
@@ -147,7 +270,17 @@ namespace Instanda.Sequence.Tests
         [TestMethod]
         public async Task NextMethodThrowsExceptionWhenIfMaxRetryAttemptIsReach()
         {
-            throw new NotImplementedException();
+            var stateProvider = GetStateProvider();
+
+            ((InMemoryStateProvider)stateProvider).UpdateValue = false;
+
+            var sequenceGenerator = new SequenceGenerator(stateProvider);
+
+            var sequence = CreateSequence();
+
+            var sequenceKey = await stateProvider.AddAsync(sequence);
+
+             await sequenceGenerator.NextAsync(sequenceKey);
         }
     }
 }

@@ -10,31 +10,58 @@ namespace Instanda.Sequence.Tests
     {
         private readonly Dictionary<string, Sequence> dictionary;
 
+        public bool UpdateValue
+        {
+            get;
+            set;
+        }
 
         public InMemoryStateProvider()
         {
             dictionary = new Dictionary<string, Sequence>();
+            UpdateValue = true;
         }
 
         public Task<SequenceKey> AddAsync(Sequence sequence)
         {
-            var key = new SequenceKey {Value = Guid.NewGuid().ToString()};
+            try
+            {
+                var key = new SequenceKey { Value = Guid.NewGuid().ToString() };
 
-            dictionary.Add(key.Value, sequence);
+                dictionary.Add(key.Value, sequence);
 
-            return Task.FromResult(key);
+                return Task.FromResult(key);
+            }
+            catch (Exception)
+            {
+                return Task.FromResult(default(SequenceKey));
+            }
         }
 
         public Task<Sequence> GetAsync(SequenceKey sequenceKey)
         {
-            return Task.FromResult(dictionary[sequenceKey.Value]);
+            try
+            {
+                return Task.FromResult(dictionary[sequenceKey.Value]);
+            }
+            catch (Exception)
+            {
+                return Task.FromResult(default(Sequence));
+            }
         }
 
         public Task<bool> UpdateAsync(SequenceKey sequenceKey, Sequence sequence)
         {
-            dictionary[sequenceKey.Value] = sequence;
+            try
+            {
+                dictionary[sequenceKey.Value] = sequence;
 
-            return Task.FromResult(true);
+                return Task.FromResult(UpdateValue);
+            }
+            catch (Exception)
+            {
+                return Task.FromResult(UpdateValue);
+            }
         }
     }
 }
