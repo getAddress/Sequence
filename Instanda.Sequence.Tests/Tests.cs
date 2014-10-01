@@ -1,20 +1,24 @@
 ﻿
 using System.Threading.Tasks;
-using Instanda.Sequence.Azure;
-using Instanda.Sequence.SqlServer;
+
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Instanda.Sequence.Tests
 {
+    using Azure = Instanda.Sequence.Azure;
+    using SqlServer = Instanda.Sequence.SqlServer;
+
     [TestClass]
     public class Tests
     {
 
+      
+
         private IStateProvider GetStateProvider()
         {
-            return SqlServerStateProviderFactory.Get(@"Server=.\SQLEXPRESS;Database=SequenceTest;Integrated Security=True;");
-            //return AzureStateProviderFactory.Get(""/*Your Azure connection string*/, "SequenceTest");
-           // return new InMemoryStateProvider();
+           // return SqlServer.SqlServerStateProviderFactory.Get(@"Server=.\SQLEXPRESS;Database=SequenceTest;Integrated Security=True;" /*your sql connection string*/);
+           // return Azure.AzureStateProviderFactory.Get(""/*Your Azure connection string*/, "SequenceTest");
+           return new InMemoryStateProvider();
         }
 
         private static async Task<ISequence> CreateSequence(IStateProvider stateProvider, int increment = 1, int startAt = 0, long maxValue = long.MaxValue,
