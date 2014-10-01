@@ -3,7 +3,7 @@ using Microsoft.WindowsAzure.Storage.Table;
 
 namespace Instanda.Sequence.Azure
 {
-    public class SequenceTableEntity:TableEntity,ISequence
+    internal class SequenceTableEntity:TableEntity,ISequence
     {
         public SequenceTableEntity()
         {

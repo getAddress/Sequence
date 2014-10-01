@@ -8,7 +8,7 @@ using Microsoft.WindowsAzure.Storage.Table;
 
 namespace Instanda.Sequence.Azure
 {
-    public abstract class TableEntityRepository<T> where T : ITableEntity, new()
+    internal abstract class TableEntityRepository<T> where T : ITableEntity, new()
     {
 
 

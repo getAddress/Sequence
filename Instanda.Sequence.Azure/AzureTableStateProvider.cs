@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Instanda.Sequence.Azure
 {
-    public class AzureTableStateProvider : TableEntityRepository<SequenceTableEntity>, IStateProvider
+    internal class AzureTableStateProvider : TableEntityRepository<SequenceTableEntity>, IStateProvider
     {
         private const string PartitionKey = "Sequences";
 
