@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+
 using System.Threading.Tasks;
+
 
 namespace Instanda.Sequence.Tests
 {
@@ -50,9 +50,9 @@ namespace Instanda.Sequence.Tests
             }
         }
 
-        public async Task<ISequence> NewAsync()
+        public async Task<ISequence> NewAsync(SequenceOptions options)
         {
-            return await  Task.FromResult(new Sequence());
+            return await Task.FromResult(new Sequence(options));
         }
 
         public Task<bool> UpdateAsync(SequenceKey sequenceKey, ISequence sequence)

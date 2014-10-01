@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Instanda.Sequence.Tests", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Instanda.Sequence.Azure", "Instanda.Sequence.Azure\Instanda.Sequence.Azure.csproj", "{4C97E1EA-0ABD-45EE-A5D7-3BB76D51DFD5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Instand.Sequence", "Instand.Sequence\Instand.Sequence.csproj", "{794CDAFC-F291-4105-A3DA-80A66AB44EC0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Instanda.Sequence", "Instand.Sequence\Instanda.Sequence.csproj", "{794CDAFC-F291-4105-A3DA-80A66AB44EC0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

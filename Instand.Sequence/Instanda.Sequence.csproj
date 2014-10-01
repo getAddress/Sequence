@@ -7,8 +7,8 @@
     <ProjectGuid>{794CDAFC-F291-4105-A3DA-80A66AB44EC0}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Instand.Sequence</RootNamespace>
-    <AssemblyName>Instand.Sequence</AssemblyName>
+    <RootNamespace>Instanda.Sequence</RootNamespace>
+    <AssemblyName>Instanda.Sequence</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -45,6 +45,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SequenceGenerator.cs" />
     <Compile Include="SequenceKey.cs" />
+    <Compile Include="SequenceOptions.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

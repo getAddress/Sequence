@@ -59,12 +59,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Instand.Sequence\Instand.Sequence.csproj">
+    <ProjectReference Include="..\Instand.Sequence\Instanda.Sequence.csproj">
       <Project>{794cdafc-f291-4105-a3da-80a66ab44ec0}</Project>
-      <Name>Instand.Sequence</Name>
+      <Name>Instanda.Sequence</Name>
     </ProjectReference>
     <ProjectReference Include="..\Instanda.Sequence.Azure\Instanda.Sequence.Azure.csproj">
-      <Project>{4C97E1EA-0ABD-45EE-A5D7-3BB76D51DFD5}</Project>
+      <Project>{4c97e1ea-0abd-45ee-a5d7-3bb76d51dfd5}</Project>
       <Name>Instanda.Sequence.Azure</Name>
     </ProjectReference>
   </ItemGroup>

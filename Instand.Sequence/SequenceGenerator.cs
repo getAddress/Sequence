@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 
+
 namespace Instanda.Sequence
 {
     public class SequenceGenerator
@@ -73,6 +74,7 @@ namespace Instanda.Sequence
             }
 
 
+            
 
             var sequenceValue =  sequence.CurrentValue + sequence.Increment;
 

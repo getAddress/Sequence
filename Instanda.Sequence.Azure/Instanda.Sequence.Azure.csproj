@@ -78,9 +78,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Instand.Sequence\Instand.Sequence.csproj">
+    <ProjectReference Include="..\Instand.Sequence\Instanda.Sequence.csproj">
       <Project>{794cdafc-f291-4105-a3da-80a66ab44ec0}</Project>
-      <Name>Instand.Sequence</Name>
+      <Name>Instanda.Sequence</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
