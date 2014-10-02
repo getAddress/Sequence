@@ -2,9 +2,10 @@
 
 using System.Threading.Tasks;
 
+
 namespace Instanda.Sequence.Azure
 {
-    public class AzureTableStateProvider : TableEntityRepository<SequenceTableEntity>, IStateProvider
+    internal class AzureTableStateProvider : TableEntityRepository<SequenceTableEntity>, IStateProvider
     {
         private const string PartitionKey = "Sequences";
 
@@ -47,23 +48,14 @@ namespace Instanda.Sequence.Azure
            return updatedSequenceEntity != null;
         }
 
-        public async Task<ISequence> NewAsync()
+        public async Task<ISequence> NewAsync(SequenceOptions options)
         {
-            var sequence =  new SequenceTableEntity();
-            SetDefaultValues(sequence);
+            var sequence = new SequenceTableEntity(options);
+            
             return await Task.FromResult(sequence);
         }
 
-        private void SetDefaultValues(ISequence sequence)
-        {
-            sequence.StartAt = 0;
-            sequence.Increment = 1;
-            sequence.MaxValue = long.MaxValue;
-            sequence.MinValue = 0;
-            sequence.Cycle = false;
-            sequence.CurrentValue = 0;
-
-        }
+        
 
     }
 }

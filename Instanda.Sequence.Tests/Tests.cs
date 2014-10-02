@@ -1,6 +1,7 @@
-﻿using System;
+﻿
 using System.Threading.Tasks;
 using Instanda.Sequence.Azure;
+using Instanda.Sequence.SqlServer;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Instanda.Sequence.Tests
@@ -11,21 +12,24 @@ namespace Instanda.Sequence.Tests
 
         private IStateProvider GetStateProvider()
         {
-            return StateProviderFactory.Get("DefaultEndpointsProtocol=https;AccountName=developersrv;AccountKey=vpiHFEkTPgWFjsVF9ugc92nw2BJYrPyeiyu3Z5ttO1c0iWY9czWs5mFWcfBs4lk+zBTBkcwIpG9sVWTgbg3mJw==", "SequenceTest");
-            // return new InMemoryStateProvider();
+            return SqlServerStateProviderFactory.Get(@"Server=.\SQLEXPRESS;Database=SequenceTest;Integrated Security=True;");
+            //return AzureStateProviderFactory.Get(""/*Your Azure connection string*/, "SequenceTest");
+           // return new InMemoryStateProvider();
         }
 
         private static async Task<ISequence> CreateSequence(IStateProvider stateProvider, int increment = 1, int startAt = 0, long maxValue = long.MaxValue,
             long minValue = long.MinValue,bool cycle = false )
         {
-            var sequence = await stateProvider.NewAsync();
+            var options = new SequenceOptions { 
+                    Increment = increment,
+                   StartAt = startAt,
+                 MaxValue = maxValue,
+                   Cycle = cycle,
+                    MinValue = minValue
+            };
 
-            sequence.Increment = increment;//todo: SequenceOptions in constuctor
+            var sequence = await stateProvider.NewAsync(options);
 
-            sequence.StartAt = startAt;
-            sequence.MaxValue = maxValue;
-            sequence.Cycle = cycle;
-            sequence.MinValue = minValue;
             return sequence;
         }
 

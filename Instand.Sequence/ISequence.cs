@@ -2,11 +2,11 @@
 {
     public interface ISequence
     {
-        long StartAt { get; set; }
-        int Increment { get; set; }
-        long MaxValue { get; set; }
-        long MinValue { get; set; }
-        bool Cycle { get; set; }
+        long StartAt { get;  }
+        int Increment { get;  }
+        long MaxValue { get;  }
+        long MinValue { get;  }
+        bool Cycle { get;  }
         long CurrentValue { get; set; }
     }
 }

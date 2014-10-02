@@ -1,6 +1,7 @@
 ﻿
 using System.Threading.Tasks;
 
+
 namespace Instanda.Sequence
 {
     public interface IStateProvider
@@ -12,6 +13,6 @@ namespace Instanda.Sequence
 
         Task<bool> UpdateAsync(SequenceKey sequenceKey, ISequence sequence);
 
-        Task<ISequence> NewAsync();
+        Task<ISequence> NewAsync(SequenceOptions options);
     }
 }
