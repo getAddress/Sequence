@@ -1,9 +1,10 @@
 Sequence
 ========
 
-A unique number sequence generator. 
+A multiple instance and thread safe unique number sequence generator. 
 
 Replicates the create sequence transact-SQL functionality (http://msdn.microsoft.com/en-us/library/ff878091.aspx) in a .Net assembly.
+
 
 <h2>When using Azure table storage to store state</h2>
 
@@ -49,5 +50,19 @@ private async static Task Run()
 
 
 }
+```
+<h3>Output</h3>
+```
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+
 ```
 
