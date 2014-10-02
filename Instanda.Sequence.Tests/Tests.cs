@@ -20,7 +20,7 @@ namespace Instanda.Sequence.Tests
         {
             var sequence = await stateProvider.NewAsync();
 
-            sequence.Increment = increment;
+            sequence.Increment = increment;//todo: SequenceOptions in constuctor
 
             sequence.StartAt = startAt;
             sequence.MaxValue = maxValue;
