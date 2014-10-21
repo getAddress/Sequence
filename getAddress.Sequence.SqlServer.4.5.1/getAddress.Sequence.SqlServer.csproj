@@ -4,12 +4,12 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{4C97E1EA-0ABD-45EE-A5D7-3BB76D51DFD5}</ProjectGuid>
+    <ProjectGuid>{B7CD4CFD-C559-4F29-BFE6-6BEAE901CAC3}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>getAddress.Sequence.Azure</RootNamespace>
-    <AssemblyName>getAddress.Sequence.Azure</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <RootNamespace>getAddress.Sequence.SqlServer</RootNamespace>
+    <AssemblyName>getAddress.Sequence.SqlServer</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
@@ -23,6 +23,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -31,38 +32,18 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.Data.Edm">
-      <HintPath>..\packages\Microsoft.Data.Edm.5.6.2\lib\net40\Microsoft.Data.Edm.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Data.OData">
-      <HintPath>..\packages\Microsoft.Data.OData.5.6.2\lib\net40\Microsoft.Data.OData.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Microsoft.Data.Services.Client">
-      <HintPath>..\packages\Microsoft.Data.Services.Client.5.6.2\lib\net40\Microsoft.Data.Services.Client.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Microsoft.WindowsAzure.Configuration">
-      <HintPath>..\packages\Microsoft.WindowsAzure.ConfigurationManager.1.8.0.0\lib\net35-full\Microsoft.WindowsAzure.Configuration.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Microsoft.WindowsAzure.Storage">
-      <HintPath>..\packages\WindowsAzure.Storage.4.3.0\lib\net40\Microsoft.WindowsAzure.Storage.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.5.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Spatial">
-      <HintPath>..\packages\System.Spatial.5.6.2\lib\net40\System.Spatial.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -70,19 +51,30 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AzureTableStateProvider.cs" />
-    <Compile Include="Exceptions.cs" />
-    <Compile Include="SequenceTableEntity.cs" />
-    <Compile Include="StateProviderFactory.cs" />
-    <Compile Include="TableEntityRepository.cs" />
+    <Compile Include="..\getAddress.Sequence.SqlServer\SequenceConfiguration.cs">
+      <Link>SequenceConfiguration.cs</Link>
+    </Compile>
+    <Compile Include="..\getAddress.Sequence.SqlServer\SequenceDbContext.cs">
+      <Link>SequenceDbContext.cs</Link>
+    </Compile>
+    <Compile Include="..\getAddress.Sequence.SqlServer\SqlServerSequence.cs">
+      <Link>SqlServerSequence.cs</Link>
+    </Compile>
+    <Compile Include="..\getAddress.Sequence.SqlServer\SqlServerStateProvider.cs">
+      <Link>SqlServerStateProvider.cs</Link>
+    </Compile>
+    <Compile Include="..\getAddress.Sequence.SqlServer\SqlServerStateProviderFactory.cs">
+      <Link>SqlServerStateProviderFactory.cs</Link>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\getAddress.Sequence\getAddress.Sequence.csproj">
-      <Project>{794cdafc-f291-4105-a3da-80a66ab44ec0}</Project>
+    <ProjectReference Include="..\getAddress.Sequence.4.5.1\getAddress.Sequence.csproj">
+      <Project>{3706ab79-ce94-48b7-a6da-674b0863309e}</Project>
       <Name>getAddress.Sequence</Name>
     </ProjectReference>
   </ItemGroup>
