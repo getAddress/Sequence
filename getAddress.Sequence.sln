@@ -28,6 +28,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{A6256C
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "getAddress.Sequence.Mongodb", "getAddress.Sequence.Mongodb\getAddress.Sequence.Mongodb.csproj", "{476C6056-2468-4546-8DC7-FD3D7F02DEC7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "getAddress.Sequence.Mongodb", "getAddress.Sequence.Mongodb.4.5.1\getAddress.Sequence.Mongodb.csproj", "{54D42BF4-B06D-4E04-B6CE-197E6CB0B2BA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -62,6 +66,14 @@ Global
 		{B7CD4CFD-C559-4F29-BFE6-6BEAE901CAC3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B7CD4CFD-C559-4F29-BFE6-6BEAE901CAC3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B7CD4CFD-C559-4F29-BFE6-6BEAE901CAC3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{476C6056-2468-4546-8DC7-FD3D7F02DEC7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{476C6056-2468-4546-8DC7-FD3D7F02DEC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{476C6056-2468-4546-8DC7-FD3D7F02DEC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{476C6056-2468-4546-8DC7-FD3D7F02DEC7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{54D42BF4-B06D-4E04-B6CE-197E6CB0B2BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{54D42BF4-B06D-4E04-B6CE-197E6CB0B2BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{54D42BF4-B06D-4E04-B6CE-197E6CB0B2BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{54D42BF4-B06D-4E04-B6CE-197E6CB0B2BA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -74,5 +86,7 @@ Global
 		{3706AB79-CE94-48B7-A6DA-674B0863309E} = {2334AD1D-FE68-48A7-9B3C-7BB897A73BCC}
 		{63403996-4AFD-403C-9A90-613E0A704F9A} = {2334AD1D-FE68-48A7-9B3C-7BB897A73BCC}
 		{B7CD4CFD-C559-4F29-BFE6-6BEAE901CAC3} = {2334AD1D-FE68-48A7-9B3C-7BB897A73BCC}
+		{476C6056-2468-4546-8DC7-FD3D7F02DEC7} = {A3F75828-2138-415E-93EC-A6841C416FFB}
+		{54D42BF4-B06D-4E04-B6CE-197E6CB0B2BA} = {2334AD1D-FE68-48A7-9B3C-7BB897A73BCC}
 	EndGlobalSection
 EndGlobal

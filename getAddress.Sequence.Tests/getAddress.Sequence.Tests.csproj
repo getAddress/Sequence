@@ -70,6 +70,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\getAddress.Sequence.Mongodb\getAddress.Sequence.Mongodb.csproj">
+      <Project>{476c6056-2468-4546-8dc7-fd3d7f02dec7}</Project>
+      <Name>getAddress.Sequence.Mongodb</Name>
+    </ProjectReference>
     <ProjectReference Include="..\getAddress.Sequence\getAddress.Sequence.csproj">
       <Project>{794cdafc-f291-4105-a3da-80a66ab44ec0}</Project>
       <Name>getAddress.Sequence</Name>

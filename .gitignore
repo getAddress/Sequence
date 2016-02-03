@@ -154,3 +154,7 @@ $RECYCLE.BIN/
 
 # Mac desktop service store files
 .DS_Store
+getAddress.Sequence.Mongodb/GenerateId.cs
+packages/EntityFramework.6.1.1/content/App.config.transform
+packages/EntityFramework.6.1.1/EntityFramework.6.1.1.nupkg
+*.transform

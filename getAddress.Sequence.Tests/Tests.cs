@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using getAddress.Sequence.Azure;
 using getAddress.Sequence.SqlServer;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using getAddress.Sequence.Mongodb;
 
 namespace getAddress.Sequence.Tests
 {
@@ -12,6 +13,7 @@ namespace getAddress.Sequence.Tests
 
         private IStateProvider GetStateProvider()
         {
+            return MongoStateProviderFactory.Get(@"mongodb://localhost/SequenceTest");
            // return SqlServerStateProviderFactory.Get(@"Server=.\SQLEXPRESS;Database=SequenceTest;Integrated Security=True;");
             //return AzureStateProviderFactory.Get(""/*Your Azure connection string*/, "SequenceTest");
            return new InMemoryStateProvider();
@@ -144,7 +146,8 @@ namespace getAddress.Sequence.Tests
         [TestMethod]
         public async Task NextMethodThrowsExceptionIfSequencyCanNotBeFound()
         {
-            var stateProvider = GetStateProvider();
+            //var stateProvider = GetStateProvider();
+            var stateProvider = new InMemoryStateProvider();
 
             var sequenceGenerator = new SequenceGenerator(stateProvider);
 
