@@ -26,7 +26,7 @@ PM> Install-Package getAddress.Sequence.Azure
 ```
 static void Main(string[] args)
 {
-    Run().Wait();
+    Run().GetAwaiter().GetResult();
 
     Console.Read();
 }
@@ -88,7 +88,7 @@ PM> Install-Package getAddress.Sequence.SqlServer
 ```
 static void Main(string[] args)
 {
-    Run().Wait();
+    Run().GetAwaiter().GetResult();
 
     Console.Read();
 }
@@ -150,7 +150,7 @@ PM> Install-Package getAddress.Sequence.Mongo
 ```
 static void Main(string[] args)
 {
-    Run().Wait();
+    Run().GetAwaiter().GetResult();
 
     Console.Read();
 }
