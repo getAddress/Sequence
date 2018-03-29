@@ -12,7 +12,7 @@ The 'Create Sequence' command is not supported on Sql Azure:
 
 You can now use any Sql or NoSql database to store your sequence. Just implement IStateStore.
 
-## When using Azure table storage as the store state
+## When using Azure table storage as the state store
 
 ### Install
 ```
@@ -73,7 +73,7 @@ private async static Task Run()
 
 ```
 
-## When using SQL Server as the store state 
+## When using SQL Server as the state store 
 
 ### Install
 
@@ -135,7 +135,7 @@ private async static Task Run()
 10
 
 ```
-## When using Mongo as the store state
+## When using Mongo as the state store
 
 ### Install
 
